@@ -1,0 +1,18 @@
+ipAddr: 192.168.184.132
+spring:
+  application:
+    name: hahamall-search
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  thymeleaf:
+    cache: false
+  session:
+    store-type: redis
+  redis:
+    host: ${ipAddr}
+  cache:
+    type: redis
+server:
+  port: 12000

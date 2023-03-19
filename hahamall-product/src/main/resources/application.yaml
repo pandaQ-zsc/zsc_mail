@@ -1,0 +1,49 @@
+ipAddr: 192.168.184.132
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.184.132:3306/hahamall_pms?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: hahamall-product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    alicloud:
+      access-key: LTAI5tFJb89A4yKKZZNq558U
+      secret-key: Q0w76qD0JayUKRgTZlf6asAyGFUGHV
+      oss:
+        endpoint: oss-cn-shenzhen.aliyuncs.com
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+#这样开发期间能看到实时效果
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.184.132
+  #   设置缓存类型
+  cache:
+    type: redis
+    #   设置存活时间
+    redis:
+      time-to-live: 3600000
+      #      如果指定了前缀就用我们指定的 如果没有就用缓存的名字作为前缀
+      #      key-prefix: CACHE_
+      #      是否缓存空值
+      cache-null-values: true
+#    cache-names:
+mybatis-plus:
+# mapper文件夹下任意路径下的所有.xml
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+server:
+  port: 10001
+logging:
+  level:
+    com.zsc.hahamall: error
