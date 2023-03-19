@@ -1,9 +1,9 @@
-ipAddr: 192.168.184.132
+ipAddr: 47.97.182.208
 spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.184.132:3306/hahamall_pms?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    url: jdbc:mysql://47.97.182.208:3306/hahamall_pms?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: hahamall-product
@@ -22,7 +22,7 @@ spring:
   thymeleaf:
     cache: false
   redis:
-    host: 192.168.184.132
+    host: 47.97.182.208
   #   设置缓存类型
   cache:
     type: redis

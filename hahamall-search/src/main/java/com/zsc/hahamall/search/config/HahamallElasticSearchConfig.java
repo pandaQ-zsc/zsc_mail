@@ -29,7 +29,7 @@ public class HahamallElasticSearchConfig {
 
         RestClientBuilder builder = null;
         // 可以指定多个es
-        builder = RestClient.builder(new HttpHost("192.168.184.132", 9200, "http"));
+        builder = RestClient.builder(new HttpHost("47.97.182.208", 9200, "http"));
 
         RestHighLevelClient client = new RestHighLevelClient(builder);
         return client;
