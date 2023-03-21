@@ -14,6 +14,7 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import org.junit.Test;
@@ -85,13 +86,43 @@ public class HahamallSearchApplicationTests {
 		//  }
 
 		//QueryBuilders --->  xxxxBuilders  就是xxx的工具类
+		//match 查询
 		sourceBuilder.query(QueryBuilders.matchQuery("address","mill"));
 		System.out.println(sourceBuilder.toString());
 //        sourceBuilder.from();
 //        sourceBuilder.size();
 //        sourceBuilder.aggregation();
-		searchRequest.source(sourceBuilder);
 
+		//ES: 使用 aggregation 聚合
+
+		//GET /bank/_search
+		//{
+		//  "aggs": {
+		//    "ageAgg": {
+		//      "terms": {
+		//        "field": "age",
+		//        "size": 10
+		//      }
+		//    },
+		//    "balanceAgg":{
+		//      "terms": {
+		//        "field": "balance",
+		//        "size": 10
+		//      }
+		//    }
+		//  }
+		//}
+
+		System.out.println("===========term================");
+		//1.2）、按照年龄分布进行聚合
+		SearchSourceBuilder ageAgg = sourceBuilder.aggregation(AggregationBuilders.terms("ageAgg").field("age").size(10));
+		System.out.println(ageAgg);
+		System.out.println("===========aggregation==========");
+		//1.3）、计算平均薪资
+		SearchSourceBuilder balanceAvg = sourceBuilder.aggregation(AggregationBuilders.avg("balanceAvg").field("balance"));
+		System.out.println(balanceAvg);
+		searchRequest.source(sourceBuilder);
+		System.out.println("================================");
 		// 2 执行检索
 		SearchResponse response = client.search(searchRequest, HahamallElasticSearchConfig.COMMON_OPTIONS);
 		SearchHits hits = response.getHits();
