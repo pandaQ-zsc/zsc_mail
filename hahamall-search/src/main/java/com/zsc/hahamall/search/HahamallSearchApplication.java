@@ -9,7 +9,9 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 @EnableRedisHttpSession
 @EnableFeignClients
+// @EnableDiscoveryClient  服务的注册发现
 @EnableDiscoveryClient
+// 因为common包里面有mybatis-plus 的驱动   不用到数据源，需要排除数据源配置
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class  HahamallSearchApplication {
 

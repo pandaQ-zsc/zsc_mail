@@ -10,12 +10,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 导入依赖
- * 编写配置
+ * 1.导入依赖  Elasticsearch 和 ES 的相关依赖
+ * 2.编写配置
  * 参照官方API 进行操作 https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
  */
 @Configuration
 public class HahamallElasticSearchConfig {
+    //设置成单例模式 ，可以让多个连接通用同一个配置，避免创建多个用例。节约连接资源
     public static final RequestOptions COMMON_OPTIONS;
 
     static {
